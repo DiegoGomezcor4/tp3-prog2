@@ -1,25 +1,28 @@
+from orden import Orden
 from pizza import Pizza
 
 class MaestroPizzero:
 
     def __init__(self, nom: str):
         self.__nombre = nom
-        self.__pizzasPorCocinar = []
-        self.__pizzasPorEntregar = []
+        self.__ordenes = []
 
     def establecerNombre(self, nom: str):
         self.__nombre = nom
 
-    def tomarPedido(self, var: str):
-        pizza = Pizza(var)
-        self.__pizzasPorCocinar.append(pizza)
+    def tomarPedido(self, orden: Orden):
+        if orden.obtenerEstadoOrden() == orden.ESTADO_INICIAL:
+            self.__ordenes.append(orden)
 
     def cocinar(self):
-        for pizza in self.__pizzasPorCocinar:
-            print(self.__nombre + ": cocinando una pizza de " + pizza.obtenerVariedad())
-            self.__pizzasPorEntregar.append(pizza)
-        self.__pizzasPorCocinar = []
+        for orden in self.__ordenes:
+            if orden.obtenerEstadoOrden() == Orden.ESTADO_INICIAL:
+                orden.establecerEstadoOrden(Orden.ESTADO_PARA_ENTREGAR)
+                for pizza in orden.obtenerPizzas():
+                    pizza.establecerEstado(Pizza.ESTADO_COCINADA)
 
+    
+    # me quede aca ....
     def entregar(self, pizzas: int):
         pizzasAEntregar = []
         i = 0

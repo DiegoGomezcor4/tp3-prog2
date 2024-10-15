@@ -19,4 +19,19 @@ class Orden:
     def establecerEstadoOrden(self, est: int):
         if est in (Orden.ESTADO_INICIAL, Orden.ESTADO_PARA_ENTREGAR, Orden.ESTADO_ENTREGADA):
            self.__estadoOrden = est 
+           
+    def obtenerOrden(self):
+        return self.__nroOrden
+    
+    def obtenerPizzas(self):
+        return self.__pizzas
+    
+    def obtenerEstadoOrden(self):
+        return self.__estadoOrden
+    
+    def calcularTotal(self):
+        total = 0.0
+        for pizza in self.__pizzas:
+            total += pizza.obtenerVariedad().obtenerPrecio()
+        return total
     
