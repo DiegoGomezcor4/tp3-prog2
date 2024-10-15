@@ -22,7 +22,7 @@ class Orden:
            self.__estadoOrden = est 
       
     # consultas:       
-    def obtenerOrden(self):
+    def obtenerNroOrden(self):
         return self.__nroOrden
     
     def obtenerPizzas(self):
