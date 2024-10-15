@@ -23,22 +23,20 @@ class MaestroPizzero:
 
     
     # me quede aca ....
-    def entregar(self, pizzas: int):
-        pizzasAEntregar = []
-        i = 0
-        for pizza in self.__pizzasPorEntregar:
-            pizzasAEntregar.append(pizza)
-            self.__pizzasPorEntregar.remove(pizza)
-            i += 1
-            if i == pizzas:
-                break
-        return pizzasAEntregar
+    def entregar(self, orden: Orden):
+        if orden.obteneerEstadoOrden() == Orden.ESTADO_PARA_ENTREGAR:
+            pizzasAEntregar = []
+            for pizza in orden.obtenerPizzas():
+                if len(pizzasAEntregar) < 2 and pizza.obtenerEstado() == Pizza.ESTADO_COCINADA:
+                    pizza.establecerEstado(Pizza.ESTADO_ENTREGADA)
+                    pizzasAEntregar.append(pizza)
+                    
+            if all(pizza.obtenerEstado() == Pizza.ESTADO_ENTREGADA for pizza in orden.obtenerPizzas()):
+                orden.establecerEstadoOrden(Orden.ESTADO_ENTREGADA)
+            return pizzasAEntregar
 
     def obtenerNombre(self):
         return self.__nombre
     
-    def obtenerPizzasPorCocinar(self):
-        return self.__pizzasPorCocinar
-    
-    def obtenerPizzasPorEntregar(self):
-        return self.__pizzasPorEntregar
+    def obtenerOrdenes(self):
+        return self.__ordenes
