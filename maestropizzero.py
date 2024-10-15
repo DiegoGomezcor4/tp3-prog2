@@ -24,7 +24,7 @@ class MaestroPizzero:
     
     # me quede aca ....
     def entregar(self, orden: Orden):
-        if orden.obteneerEstadoOrden() == Orden.ESTADO_PARA_ENTREGAR:
+        if orden.obtenerEstadoOrden() == Orden.ESTADO_PARA_ENTREGAR:
             pizzasAEntregar = []
             for pizza in orden.obtenerPizzas():
                 if len(pizzasAEntregar) < 2 and pizza.obtenerEstado() == Pizza.ESTADO_COCINADA:
