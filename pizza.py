@@ -1,3 +1,4 @@
+from pizzavariedad import PizzaVariedad
 class Pizza:
     
     ESTADO_POR_COCINAR = 1
@@ -16,7 +17,7 @@ class Pizza:
             self.__estado = est
 
     def obtenerVariedad(self):
-        return self.__variedad
+        return self.__variedad.obtenerNombreVariedad()
     
     def obtenerEstado(self):
         return self.__estado

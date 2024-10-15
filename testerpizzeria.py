@@ -39,7 +39,7 @@ class TesterPizzeria:
             print(f"- {pizza.obtenerVariedad().obtenerNombreVariedad()}")
             
     def imprimirEstadoOrden(self, orden: Orden):
-        estado_orden = orden.obtenerEStadoOrden()
+        estado_orden = orden.obtenerEstadoOrden()
         estado_str = ""
         if estado_orden == Orden.ESTADO_PARA_ENTREGAR:
             estado_str = "Penddiente de cocinar"

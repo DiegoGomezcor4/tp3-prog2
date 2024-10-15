@@ -19,13 +19,14 @@ class Mozo:
             print(self.__nombre + ": El mozo puede tomar un máximo de 2 pizzas!")
         else:
             for pizza in pizzas:
-                print(self.__nombre + ": tomando una de " + pizza.obtenerVariedad() + " para ser entregada")
+                #print(self.__nombre + ": tomando una de " + pizza.obtenerVariedad() + " para ser entregada")
                 self.__pizzas.append(pizza)
     
     # comando: sirve las pizzas que ha tomado
     def servirPizzas(self):
         for pizza in self.__pizzas:
-            print(self.__nombre + ": Sirviendo pizza de " + pizza.obtenerVariedad())
+            
+            print(f"- {self.__nombre}  : Sirviendo pizza de   {pizza.obtenerVariedad()}")
         self.__pizzas = [] # Vacia la lista de pizzas una vez servidas
         
     # Consulta: obtiene el nombre del mozo

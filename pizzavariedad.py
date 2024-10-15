@@ -13,7 +13,7 @@ class PizzaVariedad:
             self.__precio = pre
             
     def obtenerNombreVariedad(self):
-        return self.__nombreVaridad
+        return self.__nombreVariedad
     
     def obtenerPrecio(self):
         return self.__precio
