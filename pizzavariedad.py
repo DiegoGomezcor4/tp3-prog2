@@ -5,7 +5,7 @@ class PizzaVariedad:
             self.__precio = pre
             
     def establecerNombreVariedad(self, nomVar: str):
-        self.__nombreVaridad = nomVar
+        self.__nombreVariedad = nomVar
         
     
     def establecerPrecio(self, pre: float):
