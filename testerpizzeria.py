@@ -49,6 +49,11 @@ class TesterPizzeria:
         maestroPizzero = MaestroPizzero("Mario")
         mozo1 = Mozo("Luigi")
         mozo2 = Mozo("Javier")
+        
+        print("\nestado de todos al inicio")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
 
         # maestro pizzero tomam los pedidos
         print('----------------------------------------\nPizzeria de Don Mario\n----------------------------------------')
@@ -58,63 +63,72 @@ class TesterPizzeria:
             print("Mario tomando pedido #" + str(orden.obtenerNroOrden()))
             maestroPizzero.tomarPedido(orden)
             
-         # estado de todos:    
+         # estado de todos:
+        print("\nestado cuando el maestro pizzero tomo los pedidos")   
         testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
         testerPizzeria.imprimirEstadoMozo(mozo1)
         testerPizzeria.imprimirEstadoMozo(mozo2)
+        
+        # cocinando las pizzas:
+        maestroPizzero.cocinar()
 
         # entregando pizzas a los mozos:
 
         mozo1.tomarPizzas(maestroPizzero.entregar(orden1))
         mozo2.tomarPizzas(maestroPizzero.entregar(orden2))
+        
+        print("\nestado despues de entregar las primeras ordenes")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
+        
+        # mozos entregando las ordenes
+        mozo1.servirPizzas()
+        mozo2.servirPizzas()
+
+        
     
+        print("\nestado despues de servir las primeras pizzas")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
 
+        print("\nmozos tomando las ordenes 3 y 4")
+        mozo1.tomarPizzas(maestroPizzero.entregar(orden3))
+        mozo2.tomarPizzas(maestroPizzero.entregar(orden4))
         
         
-        # print("\nCocinando pedidos...")
-        # pipo.cocinar()
-
-        # self.__imprimirEstado(pipo, nico, juan)
-        # print(pipo.obtenerOrdenes)
-
-        # nico.tomarPizzas(pipo.entregar(orden1))
-        # juan.tomarPizzas(pipo.entregar(orden2))
+        print("\nestado despues de tomar las ordenes 3 y 4")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-        # print("")
-        # nico.servirPizzas()
-        # juan.servirPizzas()
+        # sirviendo pizzas de las ordens 3 y 4
+        mozo1.servirPizzas()
+        mozo2.servirPizzas()
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-        # nico.tomarPizzas(pipo.entregar(orden3))
-        # juan.tomarPizzas(pipo.entregar(orden4))
+        print("\nestado despues de servir pizzas de las ordenes 3 y 4")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-        # print("")
-        # nico.servirPizzas()
-        # juan.servirPizzas()
+        print("\ncontinuando con la entrega de la orden 3 y 5")
+        mozo1.tomarPizzas(maestroPizzero.entregar(orden3))
+        mozo2.tomarPizzas(maestroPizzero.entregar(orden5))
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-        # nico.tomarPizzas(pipo.entregar(orden3))
+        print("\nestado despues de tomar las ordenes 3 y 5")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-        # print("")
-        # nico.servirPizzas()
+        mozo1.servirPizzas()
+        mozo2.servirPizzas()
         
-        # self.__imprimirEstado(pipo, nico, juan)
-
-    # def __imprimirEstado(self, maestroPizzero: MaestroPizzero, mozo1: Mozo, mozo2: Mozo):
-    #     print("\nMaestro Pizzero: " + maestroPizzero.obtenerNombre() + "\n==============================")
-    #     print(maestroPizzero.obtenerOrdenes())
-    #     print("==============================\nMozo: " + mozo1.obtenerNombre() + "\n==============================")
-    #     print(mozo1.obtenerPizzas())
-    #     print("==============================\nMozo: " + mozo2.obtenerNombre() + "\n==============================")
-    #     print(mozo2.obtenerPizzas())
+        print("\nestado despues de servir las ordenes 3 y 5")   
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
+        
 
     def imprimirEstadoMaestro(self, maestroPizzero: MaestroPizzero):
         print("\n--------------------------------------------------------------------")
@@ -136,8 +150,9 @@ class TesterPizzeria:
 
     def imprimirEstadoMozo(self, mozo: Mozo):
         print(f"------------------------Estado del mozo: {mozo.obtenerNombre()}-----------")
+        print(f"tienen estas pizzas para entregar!")
         for pizza in mozo.obtenerPizzas():
-            print(pizza.obtenerVaridad().obtenerNombreVaridad())
+            print(pizza.obtenerVariedad().obtenerNombreVariedad())
 
 if __name__ == "__main__":
     testerPizzeria = TesterPizzeria()

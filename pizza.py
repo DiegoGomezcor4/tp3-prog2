@@ -13,7 +13,6 @@ class Pizza:
         self.__variedad = var
         
     def establecerEstado(self, est: int):
-        if est in (Pizza.ESTADO_POR_COCINAR, Pizza.ESTADO_POR_COCINAR, Pizza.ESTADO_ENTREGADA):
             self.__estado = est
 
     def obtenerVariedad(self):

@@ -21,19 +21,26 @@ class MaestroPizzero:
                 for pizza in orden.obtenerPizzas():
                     pizza.establecerEstado(Pizza.ESTADO_COCINADA)
 
+
     
     def entregar(self, orden: Orden):
+        pizzasAEntregar = []
         if orden.obtenerEstadoOrden() == Orden.ESTADO_PARA_ENTREGAR:
-            pizzasAEntregar = []
             for pizza in orden.obtenerPizzas():
                 if len(pizzasAEntregar) < 2 and pizza.obtenerEstado() == Pizza.ESTADO_COCINADA:
                     pizza.establecerEstado(Pizza.ESTADO_ENTREGADA)
                     pizzasAEntregar.append(pizza)
-                    
+                    print(f"MaestroPizzero {self.__nombre}: Pizza de {pizza.obtenerVariedad().obtenerNombreVariedad()} está lista para ser entregada.")
+            
+            if not pizzasAEntregar:
+                print(f"MaestroPizzero {self.__nombre}: No hay pizzas listas para entregar en esta orden.")
+            
             if all(pizza.obtenerEstado() == Pizza.ESTADO_ENTREGADA for pizza in orden.obtenerPizzas()):
                 orden.establecerEstadoOrden(Orden.ESTADO_ENTREGADA)
-            return pizzasAEntregar
-
+        
+        return pizzasAEntregar
+    
+    
     def obtenerNombre(self):
         return self.__nombre
     
