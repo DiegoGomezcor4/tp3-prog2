@@ -17,7 +17,7 @@ class Pizza:
             self.__estado = est
 
     def obtenerVariedad(self):
-        return self.__variedad.obtenerNombreVariedad()
+        return self.__variedad
     
     def obtenerEstado(self):
         return self.__estado

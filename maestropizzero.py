@@ -22,7 +22,6 @@ class MaestroPizzero:
                     pizza.establecerEstado(Pizza.ESTADO_COCINADA)
 
     
-    # me quede aca ....
     def entregar(self, orden: Orden):
         if orden.obtenerEstadoOrden() == Orden.ESTADO_PARA_ENTREGAR:
             pizzasAEntregar = []

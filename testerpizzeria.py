@@ -41,54 +41,69 @@ class TesterPizzeria:
         orden6 = Orden(6, [pizza8, pizza9, pizza15, pizza16])
         ordenes = [orden1, orden2, orden3, orden4, orden5, orden6]
         
-        pipo = MaestroPizzero("Pipo")
-        nico = Mozo("Nico")
-        juan = Mozo("Juan")
+        maestroPizzero = MaestroPizzero("Mario")
+        Mozo1 = Mozo("Luigi")
+        Mozo2 = Mozo("Javier")
 
-        print('----------------------------------------\nPizzeria de Don Pipo\n----------------------------------------')
+        print('----------------------------------------\nPizzeria de Don Mario\n----------------------------------------')
 
         print("\nTomando pedidos...")
         for orden in ordenes:
-            print("Pipo tomando pedido #" + str(orden.obtenerNroOrden()))
-            pipo.tomarPedido(orden)
-
-        self.__imprimirEstado(pipo, nico, juan)
+            print("Mario tomando pedido #" + str(orden.obtenerNroOrden()))
+            maestroPizzero.tomarPedido(orden)
+            
         
-        print("\nCocinando pedidos...")
-        pipo.cocinar()
+        #self.__imprimirEstado(pipo, nico, juan)
+        print(f"Ordenes del Maestro pizzero {maestroPizzero.obtenerNombre()}")
+        ordenes = maestroPizzero.obtenerOrdenes() # listado de ordenes
+        for orden in ordenes:
+            if orden.obtenerEstadoOrden() == 1:
+                estado = "ORDEN EN ESTADO INICIAL"
+            elif orden.obtenerEstadoOrden() == 2:
+                estado = "ORDEN PARA ENTREGAR"
+            elif orden.obtenerEstadoOrden() == 3:
+                estado = "ORDEN ENTREGADA"
+            print(f"Orden numero: {orden.obtenerNroOrden()}, estado: {estado}") # imprime numero de orden
+            pizzas = orden.obtenerPizzas()
+            for pizza in pizzas:
+                variedad = pizza.obtenerVariedad()
+                print(f"\t{variedad.obtenerNombreVariedad()}")
+        # print("\nCocinando pedidos...")
+        # pipo.cocinar()
 
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
+        # print(pipo.obtenerOrdenes)
 
-        nico.tomarPizzas(pipo.entregar(orden1))
-        juan.tomarPizzas(pipo.entregar(orden2))
+        # nico.tomarPizzas(pipo.entregar(orden1))
+        # juan.tomarPizzas(pipo.entregar(orden2))
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
-        print("")
-        nico.servirPizzas()
-        juan.servirPizzas()
+        # print("")
+        # nico.servirPizzas()
+        # juan.servirPizzas()
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
-        nico.tomarPizzas(pipo.entregar(orden3))
-        juan.tomarPizzas(pipo.entregar(orden4))
+        # nico.tomarPizzas(pipo.entregar(orden3))
+        # juan.tomarPizzas(pipo.entregar(orden4))
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
-        print("")
-        nico.servirPizzas()
-        juan.servirPizzas()
+        # print("")
+        # nico.servirPizzas()
+        # juan.servirPizzas()
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
-        nico.tomarPizzas(pipo.entregar(orden3))
+        # nico.tomarPizzas(pipo.entregar(orden3))
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
-        print("")
-        nico.servirPizzas()
+        # print("")
+        # nico.servirPizzas()
         
-        self.__imprimirEstado(pipo, nico, juan)
+        # self.__imprimirEstado(pipo, nico, juan)
 
     def __imprimirEstado(self, maestroPizzero: MaestroPizzero, mozo1: Mozo, mozo2: Mozo):
         print("\nMaestro Pizzero: " + maestroPizzero.obtenerNombre() + "\n==============================")
