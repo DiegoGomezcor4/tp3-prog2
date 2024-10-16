@@ -52,22 +52,11 @@ class TesterPizzeria:
             print("Mario tomando pedido #" + str(orden.obtenerNroOrden()))
             maestroPizzero.tomarPedido(orden)
             
+        testerPizzeria.imprimirEstado(maestroPizzero)
+    
+
         
-        #self.__imprimirEstado(pipo, nico, juan)
-        print(f"Ordenes del Maestro pizzero {maestroPizzero.obtenerNombre()}")
-        ordenes = maestroPizzero.obtenerOrdenes() # listado de ordenes
-        for orden in ordenes:
-            if orden.obtenerEstadoOrden() == 1:
-                estado = "ORDEN EN ESTADO INICIAL"
-            elif orden.obtenerEstadoOrden() == 2:
-                estado = "ORDEN PARA ENTREGAR"
-            elif orden.obtenerEstadoOrden() == 3:
-                estado = "ORDEN ENTREGADA"
-            print(f"Orden numero: {orden.obtenerNroOrden()}, estado: {estado}") # imprime numero de orden
-            pizzas = orden.obtenerPizzas()
-            for pizza in pizzas:
-                variedad = pizza.obtenerVariedad()
-                print(f"\t{variedad.obtenerNombreVariedad()}")
+        
         # print("\nCocinando pedidos...")
         # pipo.cocinar()
 
@@ -105,13 +94,30 @@ class TesterPizzeria:
         
         # self.__imprimirEstado(pipo, nico, juan)
 
-    def __imprimirEstado(self, maestroPizzero: MaestroPizzero, mozo1: Mozo, mozo2: Mozo):
-        print("\nMaestro Pizzero: " + maestroPizzero.obtenerNombre() + "\n==============================")
-        print(maestroPizzero.obtenerOrdenes())
-        print("==============================\nMozo: " + mozo1.obtenerNombre() + "\n==============================")
-        print(mozo1.obtenerPizzas())
-        print("==============================\nMozo: " + mozo2.obtenerNombre() + "\n==============================")
-        print(mozo2.obtenerPizzas())
+    # def __imprimirEstado(self, maestroPizzero: MaestroPizzero, mozo1: Mozo, mozo2: Mozo):
+    #     print("\nMaestro Pizzero: " + maestroPizzero.obtenerNombre() + "\n==============================")
+    #     print(maestroPizzero.obtenerOrdenes())
+    #     print("==============================\nMozo: " + mozo1.obtenerNombre() + "\n==============================")
+    #     print(mozo1.obtenerPizzas())
+    #     print("==============================\nMozo: " + mozo2.obtenerNombre() + "\n==============================")
+    #     print(mozo2.obtenerPizzas())
+
+    def imprimirEstado(self, maestroPizzero: MaestroPizzero):
+        print(f"Ordenes del Maestro pizzero {maestroPizzero.obtenerNombre()}")
+        ordenes = maestroPizzero.obtenerOrdenes() # listado de ordenes
+        for orden in ordenes:
+            if orden.obtenerEstadoOrden() == 1:
+                estado = "ORDEN EN ESTADO INICIAL"
+            elif orden.obtenerEstadoOrden() == 2:
+                estado = "ORDEN PARA ENTREGAR"
+            elif orden.obtenerEstadoOrden() == 3:
+                estado = "ORDEN ENTREGADA"
+            print(f"Orden numero: {orden.obtenerNroOrden()}, estado: {estado}") # imprime numero de orden
+            pizzas = orden.obtenerPizzas()
+            for pizza in pizzas:
+                variedad = pizza.obtenerVariedad()
+                print(f"\t{variedad.obtenerNombreVariedad()}")
+
 
 if __name__ == "__main__":
     testerPizzeria = TesterPizzeria()
