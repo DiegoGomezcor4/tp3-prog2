@@ -8,6 +8,8 @@ from pizza import Pizza
 class TesterPizzeria:
 
     def main(self):
+
+        # se crean las variedades
         muzza = PizzaVariedad("Muzzarella", 7000.00)
         fugazetta = PizzaVariedad("Fugazetta", 7500.00)
         napolitana = PizzaVariedad("Napolitana", 7500.00)
@@ -16,6 +18,7 @@ class TesterPizzeria:
         provolone = PizzaVariedad("Provolone", 8400.00)
         roqueynuez = PizzaVariedad("Roquefort y Nuez", 9000.00)
 
+        # se crean las pizzas
         pizza1 = Pizza(muzza)
         pizza2 = Pizza(fugazetta)
         pizza3 = Pizza(napolitana)
@@ -33,6 +36,7 @@ class TesterPizzeria:
         pizza15 = Pizza(provolone)
         pizza16 = Pizza(calabresa)
 
+        #se crean las ordenes
         orden1 = Orden(1, [pizza1, pizza10])
         orden2 = Orden(2, [pizza2, pizza11])
         orden3 = Orden(3, [pizza3, pizza12, pizza13])
@@ -41,10 +45,12 @@ class TesterPizzeria:
         orden6 = Orden(6, [pizza8, pizza9, pizza15, pizza16])
         ordenes = [orden1, orden2, orden3, orden4, orden5, orden6]
         
+        #se crean el maestro pizzero y los mozos
         maestroPizzero = MaestroPizzero("Mario")
-        Mozo1 = Mozo("Luigi")
-        Mozo2 = Mozo("Javier")
+        mozo1 = Mozo("Luigi")
+        mozo2 = Mozo("Javier")
 
+        # maestro pizzero tomam los pedidos
         print('----------------------------------------\nPizzeria de Don Mario\n----------------------------------------')
 
         print("\nTomando pedidos...")
@@ -52,7 +58,15 @@ class TesterPizzeria:
             print("Mario tomando pedido #" + str(orden.obtenerNroOrden()))
             maestroPizzero.tomarPedido(orden)
             
-        testerPizzeria.imprimirEstado(maestroPizzero)
+         # estado de todos:    
+        testerPizzeria.imprimirEstadoMaestro(maestroPizzero)
+        testerPizzeria.imprimirEstadoMozo(mozo1)
+        testerPizzeria.imprimirEstadoMozo(mozo2)
+
+        # entregando pizzas a los mozos:
+
+        mozo1.tomarPizzas(maestroPizzero.entregar(orden1))
+        mozo2.tomarPizzas(maestroPizzero.entregar(orden2))
     
 
         
@@ -102,7 +116,8 @@ class TesterPizzeria:
     #     print("==============================\nMozo: " + mozo2.obtenerNombre() + "\n==============================")
     #     print(mozo2.obtenerPizzas())
 
-    def imprimirEstado(self, maestroPizzero: MaestroPizzero):
+    def imprimirEstadoMaestro(self, maestroPizzero: MaestroPizzero):
+        print("\n--------------------------------------------------------------------")
         print(f"Ordenes del Maestro pizzero {maestroPizzero.obtenerNombre()}")
         ordenes = maestroPizzero.obtenerOrdenes() # listado de ordenes
         for orden in ordenes:
@@ -117,7 +132,12 @@ class TesterPizzeria:
             for pizza in pizzas:
                 variedad = pizza.obtenerVariedad()
                 print(f"\t{variedad.obtenerNombreVariedad()}")
+        print("--------------------------------------------------------------------\n")
 
+    def imprimirEstadoMozo(self, mozo: Mozo):
+        print(f"------------------------Estado del mozo: {mozo.obtenerNombre()}-----------")
+        for pizza in mozo.obtenerPizzas():
+            print(pizza.obtenerVaridad().obtenerNombreVaridad())
 
 if __name__ == "__main__":
     testerPizzeria = TesterPizzeria()
